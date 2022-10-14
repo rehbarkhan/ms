@@ -38,6 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authsystem.apps.AuthsystemConfig',
+    'admission.apps.AdmissionConfig',
+    'clgstaff.apps.ClgstaffConfig',
+    'exam.apps.ExamConfig',
+    'finance.apps.FinanceConfig',
+    'prof.apps.ProfConfig',
+    'sitemanager.apps.SitemanagerConfig',
+    'student.apps.StudentConfig',
 ]
 
 MIDDLEWARE = [
@@ -106,11 +113,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -125,3 +132,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # USER DEFINED SETTINGS
 AUTH_USER_MODEL = 'authsystem.CustomUser'
+LOGIN_URL = '/'
