@@ -1,2 +1,5 @@
 Create GRP
 CTR THE routing table / index page for each of the module
+Cretae custom command to execute the datbase setup.
+
+// to add the grp https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django
