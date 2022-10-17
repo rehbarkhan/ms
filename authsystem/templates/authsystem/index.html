@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,25 +18,45 @@
           margin-top:15%;
           width: 30%;
         }
+
+        .img-login{
+          margin-top:40px;
+          width:200%;
+        }
+
+        .card-title{
+          margin-top:90px;
+        }
+
     </style>
   </head>
   <body>
+
     <center>
-      <div class='login-view shadow-lg p-3 mb-5 bg-body rounded'>
-        <form action="{% url 'authsystem:authsystem_index' %}" method="POST">
-          {% csrf_token %}
-          <div class="mb-4">
-            <input type="text" class="form-control" name='username'  placeholder='User Name' aria-describedby="User Name">
+      <div class="card mb-3 login-view shadow-lg p-3 mb-5 bg-body rounded" style="width:50%;">
+        <div class="row g-0">
+          <div class="col-md-7">
+            <img src="{% static 'authsystem/login.svg' %}" class="img-fluid rounded-start img-login" alt="...">
           </div>
-          <div class="mb-4">
-            <input type="password" class="form-control" name='password' placeholder='Password'>
+          <div class="col-md-5">
+            <div class="card-body">
+              <h5 class="card-title display-5">Login</h5>
+              <form action="{% url 'authsystem:authsystem_index' %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-2">
+                  <input type="text" class="form-control" name='username'  placeholder='User Name' aria-describedby="User Name">
+                </div>
+                <div class="mb-2">
+                  <input type="password" class="form-control" name='password' placeholder='Password'>
+                </div>
+                {% if request.GET.next %}
+                <input type="hidden" value="{{request.GET.next}}" name='next'>
+                {% endif %}
+                <button type="submit" class="btn btn-outline-info">Login</button>
+              </form>  
+            </div>
           </div>
-          {% if request.GET.next %}
-          <input type="hidden" value="{{request.GET.next}}" name='next'>
-          {% endif %}
-          <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-  
+        </div>
       </div>
     </center>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 class Index(View):
     def get(self,request):
-        return render(request,'index.html',{})
+        return render(request,'authsystem/index.html',{})
     
     def post(self,request):
         username = request.POST.get('username',None)
@@ -28,7 +28,7 @@ class Info(View):
 
     @method_decorator(login_required)
     def get(self,request):
-        return render(request,'info.html',{})
+        return render(request,'authsystem/info.html',{})
 
 def user_logout(request):
     logout(request)
