@@ -5,10 +5,21 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 class Index(View):
+    
+    @classmethod
+    def pageRouter(cls,request):
+        if request.user.is_authenticated:
+            grp_type = request.user.groups.all()[0].name
+            # pass
+            
+
+
     def get(self,request):
+        Index.pageRouter(request)
         return render(request,'authsystem/index.html',{})
     
     def post(self,request):
+        Index.pageRouter(request)
         username = request.POST.get('username',None)
         password = request.POST.get('password',None)
         nextpage = request.POST.get('next',None)
@@ -22,6 +33,10 @@ class Index(View):
                     return redirect('authsystem:authsystem_info')
         else:
             return redirect('authsystem:authsystem_index')
+
+    
+    
+            
 
 
 class Info(View):

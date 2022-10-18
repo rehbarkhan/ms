@@ -8,7 +8,7 @@ class Command(BaseCommand):
         print(" - Adding Group to the Database -")
         group_list = [
             "dean","prof","exam","exam manager","admission","admission manager",
-            "site staff","site staff manager","finance","finance manager", "student"
+            "site staff","site staff manager","finance","finance manager", "student","clg staff","clg staff manager"
         ]
         for x in group_list:
             Group.objects.create(name=x)
@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
         user_auth_list = [
             "dean","exam manager","admission manager",
-            "site staff manager","finance manager"
+            "site staff manager","finance manager","clg staff manager"
         ]
 
         print(" - Adding Superuser Profile for internal user - ")
