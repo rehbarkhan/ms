@@ -4,5 +4,5 @@ from sitemanager.views import Index
 app_name = 'sitemanager'
 
 urlpatterns = [
-    path('',Index.as_view(),name='inde')
+    path('',Index.as_view(),name='index')
 ]

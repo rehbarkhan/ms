@@ -6,20 +6,47 @@ from django.contrib.auth.decorators import login_required
 
 class Index(View):
     
-    @classmethod
-    def pageRouter(cls,request):
+    def pageRouter(self,request):
         if request.user.is_authenticated:
             grp_type = request.user.groups.all()[0].name
-            # pass
+            if 'admission' in grp_type:
+                return redirect('admission:index')
+            elif 'clg' in grp_type:
+                return redirect('clgstaff:index')
+            elif 'exam' in grp_type:
+                return redirect('exam:index')
+            elif 'finance' in grp_type:
+                return redirect('finance:index')
+            elif 'prof' in grp_type:
+                return redirect('prof:index')
+            elif 'site' in grp_type:
+                return redirect('sitemanager:index')
+            else:
+                return redirect('student:index')
             
 
 
     def get(self,request):
-        Index.pageRouter(request)
+        if request.user.is_authenticated:
+            grp_type = request.user.groups.all()[0].name
+            if 'admission' in grp_type:
+                return redirect('admission:index')
+            elif 'clg' in grp_type:
+                return redirect('clgstaff:index')
+            elif 'exam' in grp_type:
+                return redirect('exam:index')
+            elif 'finance' in grp_type:
+                return redirect('finance:index')
+            elif 'prof' in grp_type or 'dean' in grp_type:
+                return redirect('prof:index')
+            elif 'site' in grp_type:
+                return redirect('sitemanager:index')
+            else:
+                return redirect('student:index')
         return render(request,'authsystem/index.html',{})
     
     def post(self,request):
-        Index.pageRouter(request)
+        # Index.pageRouter(request)
         username = request.POST.get('username',None)
         password = request.POST.get('password',None)
         nextpage = request.POST.get('next',None)
@@ -30,7 +57,7 @@ class Index(View):
                 if nextpage:
                     return redirect(nextpage)
                 else:
-                    return redirect('authsystem:authsystem_info')
+                    return redirect('authsystem:authsystem_index')
         else:
             return redirect('authsystem:authsystem_index')
 
