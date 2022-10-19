@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from exam.decorators import exam_manager_required,exam_required
+from dean.decorators import dean_required
+from django.views import View
+
+
 class Index(View):
 
     @method_decorator(login_required)
-    @method_decorator(exam_required)
+    @method_decorator(dean_required)
     def get(self,request):
-        return render(request,'exam/index.html',{})
+        return render(request,'dean/index.html',{})

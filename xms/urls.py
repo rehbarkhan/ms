@@ -25,5 +25,6 @@ urlpatterns = [
     path('exam/',include('exam.urls')),
     path('finance/',include('finance.urls')),
     path('prof/',include('prof.urls')),
-    path("sitemanager/",include('sitemanager.urls'))
+    path("sitemanager/",include('sitemanager.urls')),
+    path('dean/',include('dean.urls'))
 ]
