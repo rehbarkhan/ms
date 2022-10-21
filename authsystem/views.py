@@ -43,14 +43,12 @@ class Index(View):
                 return redirect('authsystem:authsystem_index')
         else:
             return redirect('authsystem:authsystem_index')
-
     
     
             
 
 
 class Info(View):
-
     @method_decorator(login_required)
     def get(self,request):
         return render(request,'authsystem/info.html',{})
