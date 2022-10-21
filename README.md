@@ -14,3 +14,7 @@ XYZ College Management System - Django
 6 . python3 manager.py runserver
 After running server you will get the ipaddress to access this project.
 </pre>
+
+<pre>
+ ### Always use branch and create a pr for merging the changes
+</pre>
