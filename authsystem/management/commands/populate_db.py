@@ -26,5 +26,4 @@ class Command(BaseCommand):
             obj.groups.add(Group.objects.get(name=x))
             obj.save()
             print(f"  - Username : {x} - Password : 'Welcome@1234' created successfully")
-        
         print("*************** DB Setting Completed *********")
