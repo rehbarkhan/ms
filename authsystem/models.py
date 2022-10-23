@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import(
     AbstractBaseUser,PermissionsMixin,BaseUserManager)
@@ -26,6 +27,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     new_login = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    approval_level = models.CharField(default="none",max_length=255)
 
     USERNAME_FIELD = 'username'
 
