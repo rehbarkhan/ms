@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'prof.apps.ProfConfig',
     'sitemanager.apps.SitemanagerConfig',
     'student.apps.StudentConfig',
-    'dean.apps.DeanConfig'
+    'dean.apps.DeanConfig',
+    'test_rehbar.apps.TestRehbarConfig',
 ]
 
 MIDDLEWARE = [
