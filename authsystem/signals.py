@@ -1,7 +1,6 @@
 from django.contrib.auth.signals import user_logged_in,user_logged_out
 from django.dispatch import receiver
 from datetime import datetime
-from json import dump
 
 
 @receiver(user_logged_in)
