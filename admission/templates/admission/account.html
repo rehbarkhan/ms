@@ -10,11 +10,7 @@
                 <form action="{% url 'admission:account' %}" method="POST">
                     {% csrf_token %}
                     {% for f in form %}
-                        {% if f.label == 'Date of birth' %}
                         {{f}}
-                        {% else %}
-                        {{f}}
-                        {% endif %}
                     {% endfor %}
                     <button type="submit" class="btn btn-success">Create Profile </button>
                 </form>
