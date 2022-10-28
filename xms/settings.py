@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from asyncio import constants
 from pathlib import Path
 from django.contrib.messages import constants
+from os import getenv
+from dotenv import find_dotenv,load_dotenv
+
+#loading the .env file
+load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(hx@#mqwkb(!o(wm^kqkm*_^((hev2p-^x4gsh=(mhu0kjd##k'
+#SECRET_KEY = 'django-insecure-(hx@#mqwkb(!o(wm^kqkm*_^((hev2p-^x4gsh=(mhu0kjd##k'
+SECRET_KEY = getenv('django-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,10 +91,22 @@ WSGI_APPLICATION = 'xms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': getenv('db-name'),
+        'HOST':getenv('db-host'),
+        'PORT':getenv('db-port'),
+        'USER':getenv('db-user'),
+        'PASSWORD':getenv('db-password')
     }
 }
 
