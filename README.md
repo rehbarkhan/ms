@@ -18,3 +18,8 @@ After running server you will get the ipaddress to access this project.
 <pre>
  ### Always use branch and create a pr for merging the changes
 </pre>
+
+#### How to generate random secrete key for django app
+- python manage.py shell
+- from django.core.management.utils import get_random_secret_key
+- get_random_secret_key()

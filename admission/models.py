@@ -18,8 +18,8 @@ class AdmissionDepart(models.Model):
     lastname = models.CharField(max_length=255)
 
     date_of_birth = models.DateField()
-    mobile = models.IntegerField()
-    emergency_mobile = models.IntegerField()
+    mobile = models.CharField(max_length=10)
+    emergency_mobile = models.CharField(max_length=10)
     
     present_address = models.CharField(max_length=255)
     present_city = models.CharField(max_length=255)
