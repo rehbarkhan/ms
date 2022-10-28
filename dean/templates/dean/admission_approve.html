@@ -14,6 +14,7 @@
                 <th scope="col">User Name</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
+                <th scope="col">Salary LPA</th>
                 <th scope="col">Approve</th>
               </tr>
             </thead>
@@ -23,6 +24,7 @@
                   <th scope="row">{{u.user}}</th>
                   <td>{{u.firstname}}</td>
                   <td>{{u.lastname}}</td>
+                  <td>{{u.package_lpa}}</td>
                   <td><a href="{% url 'dean:admission_apr_link' u.user %}" class="btn btn-success">Approve </a></td>
                 </tr>
               {% endfor %}

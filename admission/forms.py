@@ -7,11 +7,11 @@ ACCOUNT_TYPE = (
 )
 class AdmissionDepartmentForm(forms.ModelForm):
 
-    account_type = forms.ChoiceField(label='Account Type' , choices=ACCOUNT_TYPE,widget=forms.Select(attrs={'class':'form-control mb-5'}))
+    account_type = forms.ChoiceField(label='Account Type' , choices=ACCOUNT_TYPE,widget=forms.Select(attrs={'class':'form-control mb-2'}))
     class Meta:
         model = AdmissionDepart
         # fields = '__all__'
-        exclude = ['user',]
+        exclude = ['user','salary']
 
         widgets = {
             'firstname':forms.TextInput(attrs={'placeholder':
@@ -41,6 +41,6 @@ class AdmissionDepartmentForm(forms.ModelForm):
             'Permanent State','class':'form-control mb-2'}),
             'permanent_zip':forms.TextInput(attrs={'placeholder':
             'Permanent Zip Code','class':'form-control mb-5'}),
-            # 'account_type':forms.TextInput(attrs={'class':'form-control'})
-            # 'account_type' : forms.ChoiceWidget(choices=ACCOUNT_TYPE)
+            'package_lpa':forms.TextInput(attrs={'placeholder':
+            'CTC LPA','class':'form-control mb-5'}),
         }

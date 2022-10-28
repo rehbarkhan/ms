@@ -39,7 +39,7 @@ class Account(View):
             user_object.groups.add(Group.objects.get(name=form_object.account_type))
             form_object.user = user_object
             form_object.save()
-            messages.success(request,'Profile created successfully')
+            messages.success(request,f'Profile created successfully : username {f_name[:5].lower()}{l_name[:5].lower()}{i_name}')
         return redirect('admission:account')
 
 class Finance(View):
