@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render,redirect
 from django.views import View
 from django.utils.decorators import method_decorator
@@ -32,17 +33,14 @@ class Account(View):
             mob = form_object.mobile
             dob = form_object.date_of_birth.year
             user_object = CustomUser.object.create_user(
-                username=f'{f_name[:5].lower()}{l_name[5:].lower()}{i_name}',
+                username=f'{f_name[:5].lower()}{l_name[:5].lower()}{i_name}',
                 password = f'{str(mob)[:5]}@{dob}'
             )
             user_object.groups.add(Group.objects.get(name=form_object.account_type))
             form_object.user = user_object
             form_object.save()
+            messages.success(request,'Profile created successfully')
         return redirect('admission:account')
-
-
-
-
 
 class Finance(View):
     @method_decorator(login_required)
