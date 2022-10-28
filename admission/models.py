@@ -22,7 +22,7 @@ class AdmissionDepart(models.Model):
     permanent_state = models.CharField(max_length=255)
     permanent_zip = models.IntegerField()
     account_type = models.CharField(default='',max_length=255)
-    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE,null=True)
-
+    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE,null=True,related_name='admission')
+    
     def __str__(self):
         return f'{self.firstname} {self.lastname}'

@@ -1,0 +1,42 @@
+{% extends 'dean/base.html' %}
+{% block title %}Approve Admission Staff{% endblock %}
+{% block admission %}active {% endblock %}
+{% block body %}
+    {% if user_names %} 
+    <div class="container">
+        <div class="alert alert-info mb-5 mt-5" role="alert">
+            <h1 class="display-3 text-center">Please approve the below profile</h1>
+        </div>
+            {% include 'dean/msg.html' %}
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">User Name</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Approve</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for u in user_names %}
+                <tr>
+                  <th scope="row">{{u.user}}</th>
+                  <td>{{u.firstname}}</td>
+                  <td>{{u.lastname}}</td>
+                  <td><a href="{% url 'dean:admission_apr_link' u.user %}" class="btn btn-success">Approve </a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    {% else %}
+    <div class="container">
+        <div class="alert alert-primary mb-5 mt-5" role="alert">
+            No profile needed approval
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
+
+
