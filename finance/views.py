@@ -10,3 +10,12 @@ class Index(View):
     @method_decorator(finance_required)
     def get(self,request):
         return render(request,'finance/index.html',{})
+
+
+
+
+class FinanceProfile(View):
+    @method_decorator(login_required)
+    @method_decorator(finance_required)
+    def get(self,request):
+        return render(request,'finance/profile.html',{})
