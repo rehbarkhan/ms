@@ -1,1 +1,6 @@
-<center><h1>Hello in the finance Profile </h1></center>
+{% extends 'finance/base.html' %}
+{% block title %}Finance Profile{% endblock title%}
+{% block profile%}active{% endblock profile%}
+{% block body %}
+    <center><h1 class="display-5">Hello in the finance Profile .This page will display the profile of the logged in finance manager</h1></center>
+{%endblock body %}
