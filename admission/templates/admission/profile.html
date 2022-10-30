@@ -2,5 +2,98 @@
 {% block title %}Finance Portal{% endblock title%}
 {% block profile%}active{% endblock profile%}
 {% block body %}
-    <center><h1 class="display-5">My Profile</h1></center>
+    <div class="container">
+        {% include 'admission/msg.html' %}
+        <ul class="list-group mt-5 p-5">
+            <li class="list-group-item ml-5">
+                <h1 class="display-6 mb-5">
+                    Account Information
+                </h1>
+                <div class="vr">
+                    <h4>User Name <span class="badge bg-secondary">{{request.user.username}}</span></h4>
+                <table>
+                    <tr>
+                        <td class="mr-4">
+                            <h5 class="mt-3 mr-4">Change Password</h5>
+                        </td>
+                        <form method="POST" action="{% url 'admission:profile-reset' %}">
+                            {% csrf_token %}
+                            <td>
+                                <input type="password" name="old_password" class="form-control" style="width:250px" placeholder="Old Password" />
+                            </td>
+                            <td>
+                                <input type="password" name="new_password" class="form-control" style="width:250px" placeholder="New Password" />
+                            </td>
+                            <td>
+                                <input type="submit" class="btn btn-success" value="Change Password"/>
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <h1 class="display-6 mb-5">
+                    Personal Information
+                </h1>
+                <table>
+                    <tr>
+                        <td><h5>First Name</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.firstname}}</span></h5></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><h5>Middle Name</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.middlename}}</span></h5></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><h5>Last Name</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.lastname}}</span></h5></td>
+                    </tr>
+
+                    <tr>
+                        <td><h5>Date of Birth</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.date_of_birth}}</span></h5></td>
+                    </tr>
+
+                    <tr>
+                        <td><h5>Date of Birth</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.date_of_birth}}</span></h5></td>
+                    </tr>
+
+                    <tr>
+                        <td><h5>Mobile Number</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.mobile}}</span></h5></td>
+                    </tr>
+
+                    <tr>
+                        <td><h5>Emergency Mobile Number</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.emergency_mobile}}</span></h5></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><h5>Present Address</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.present_address}}</span></h5></td>
+                    </tr>
+                    <tr>
+                        <td><h5>Present City</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.present_city}}</span></h5></td>
+                    </tr>
+                    <tr>
+                        <td><h5>Present State</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.present_state}}</span></h5></td>
+                    </tr>
+                    <tr>
+                        <td><h5>Present Zip Code</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.present_zip}}</span></h5></td>
+                    </tr>
+                    <tr>
+                        <td><h5>Current Package</h5></td>
+                        <td><h5><span class="badge bg-secondary">{{request.user.admission.package_lpa}} LPA</span></h5></td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+    </div>
 {%endblock body %}
