@@ -7,6 +7,7 @@ from admission.decorators import admission_required,admission_manager_requried
 from admission.forms import AdmissionDepartmentForm
 from authsystem.models import CustomUser
 from django.contrib.auth.models import Group
+from django.contrib.auth import authenticate,login
 
 class Index(View):
     @method_decorator(login_required)
@@ -40,6 +41,8 @@ class Account(View):
             form_object.user = user_object
             form_object.save()
             messages.success(request,f'Profile created successfully : username {f_name[:5].lower()}{l_name[:5].lower()}{i_name}')
+        else:
+            print("something is wrong")
         return redirect('admission:account')
 
 class Finance(View):
@@ -59,3 +62,21 @@ class StudentProfile(View):
     @method_decorator(admission_required)
     def get(self,request):
         return render(request,'admission/studentprofile.html',{})
+
+class AdmissionProfilePasswordReset(View):
+    @method_decorator(login_required)
+    @method_decorator(admission_required)
+    def post(self,request):
+        old_password = request.POST.get('old_password',None)
+        new_password = request.POST.get('new_password',None)
+        if old_password is not None and new_password is not None:
+            user_id = authenticate(username=request.user.username,password=old_password)
+            if user_id is not None:
+                user_id.set_password(new_password)
+                user_id.save()
+                login(request,user_id)
+                messages.success(request,'Password changed successfully')
+            else:
+                messages.error(request,'Failed to change the password, try again')
+        return redirect('admission:profile')
+        
