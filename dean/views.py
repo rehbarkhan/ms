@@ -39,3 +39,11 @@ class AdmissinApprovalLink(View):
         else:
             messages.info(request,"Profile is already approved successfully.")
             return redirect('dean:admission')
+
+
+class CourseDetails(View):
+
+    @method_decorator(login_required)
+    @method_decorator(dean_required)
+    def get(self,request):
+        return render(request,'dean/course.html',{})

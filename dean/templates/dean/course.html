@@ -1,0 +1,9 @@
+{% extends 'dean/base.html' %}
+{% block course %}active{% endblock %}
+{% block title %}XYZ College{% endblock %}
+{% block body %}
+    <center><h1>Course</h1></center>
+    <center><h1>Last login time : {{request.session.last_stamp}}</center>
+    <center><a href="{% url 'authsystem:authsystem_logout' %}" class="btn btn-danger" >Logout</a></center>
+
+{% endblock %}
