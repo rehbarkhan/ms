@@ -13,6 +13,16 @@ class Courses(models.Model):
         return self.course_name
 
 
+#Model for Student Profile
+class Student(models.Model):
+    first_name = models.CharField(max_length=255)
+    middle_name = models.CharField(max_length=255,null=True,blank=True)
+    last_name = models.CharField(max_length = 255)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
 class StudentCourseFee(models.Model):
     total_fee = models.DecimalField(decimal_places=2,max_digits=8)
     fee_paid = models.DecimalField(decimal_places=2,max_digits=8)
