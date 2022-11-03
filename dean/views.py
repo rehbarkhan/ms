@@ -6,6 +6,8 @@ from django.views import View
 from admission.models import AdmissionDepart
 from authsystem.models import CustomUser
 from django.contrib import messages
+from student.forms import CourseForm
+from student.models import Course
 class Index(View):
 
     @method_decorator(login_required)
@@ -46,4 +48,16 @@ class CourseDetails(View):
     @method_decorator(login_required)
     @method_decorator(dean_required)
     def get(self,request):
-        return render(request,'dean/course.html',{})
+        courses = Course.objects.all()
+        form = CourseForm()
+        return render(request,'dean/course.html',{'courses':courses,'form':form})
+    
+    def post(self,request):
+        form_data = CourseForm(request.POST)
+        if form_data.is_valid():
+            form_data.save()
+            messages.success(request,"Course Added Successfully")
+        else:
+            messages.error(request,"Unable to add course")
+        
+        return redirect('dean:course')
