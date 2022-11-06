@@ -8,6 +8,7 @@ from authsystem.models import CustomUser
 from django.contrib import messages
 from student.forms import CourseForm
 from student.models import Course
+from django.db.models import Q
 class Index(View):
 
     @method_decorator(login_required)
@@ -20,7 +21,7 @@ class AdmissionApproval(View):
     @method_decorator(login_required)
     @method_decorator(dean_required)
     def get(self,request):
-        user_names = CustomUser.object.filter(is_active = False)
+        user_names = CustomUser.object.filter(Q(is_active = False) & Q(groups__name__in=['admission','admission manager']))
         admission_list = []
         for f in user_names:
             admission = AdmissionDepart.objects.get(user = f)
