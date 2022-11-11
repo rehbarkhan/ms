@@ -6,3 +6,8 @@ Cretae custom command to execute the datbase setup.
 
 return HttpResponse("You are not authorized to access this page <br><a href='/'>Return to main page</a>")
     
+
+
+Admission Manager : 
+User name : mohamrehba1
+Password : 87093@1995
