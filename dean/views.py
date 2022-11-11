@@ -62,3 +62,23 @@ class CourseDetails(View):
             messages.error(request,"Unable to add course")
         
         return redirect('dean:course')
+    
+class FinanceApprove(View):
+
+    @method_decorator(login_required)
+    @method_decorator(dean_required)
+    def get(self,request):
+        user_names = CustomUser.object.filter(Q(is_active = 0) & Q(groups__name__in=['finance','finance manager']))
+        return render(request,'dean/financeapproval.html',{'user_names':user_names})
+class FinanceApproval(View):
+    @method_decorator(login_required)
+    @method_decorator(dean_required)
+    def get(self,request,pk):
+        try:
+            user_name = CustomUser.object.get(pk=pk)
+            user_name.is_active = True
+            user_name.save()
+            messages.success(request,'Profile Activate Successfully')
+        except:
+            messages.error(request,'Unable to Activate Profile')
+        return redirect('dean:financestaff')

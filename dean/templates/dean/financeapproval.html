@@ -1,0 +1,59 @@
+{% extends 'dean/base.html' %}
+{% block title %}Approve Admission Staff{% endblock %}
+{% block finance %}active {% endblock %}
+{% block body %}
+
+    {% if messages %}
+        <div class="container">
+            <center>
+                {% for message in messages %}
+                    <h1 class="display-6 mt-5 mb-5 text-center">{{message}}</h1>
+                {% endfor %}
+            </center>
+        </div>
+    {% endif %}
+    {% if user_names %}
+    <div class="container mt-5 mb-5">
+        <div class="alert alert-primary text-center display-6" role="alert">
+            Approval Required for Finance Staff / Manager
+        </div>
+        <table class="table mt-5">
+            <thead>
+              <tr>
+                <th scope="col">User Name</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Salary LPA</th>
+                <th scope="col">Profile</th>
+                <th scope="col">Approve</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for u in user_names %}
+                <tr>
+                  <th scope="row">{{u.finance.user}}</th>
+                  <td>{{u.finance.firstname}}</td>
+                  <td>{{u.finance.lastname}}</td>
+                  <td>{{u.finance.package_lpa}}</td>
+                  {% if u.finance.account_type == 'finance manager' %}
+                    <td>Manager</td>
+                  {% else %}
+                    <td>Staff</td>
+                  {% endif %}
+                  <td><a href="{% url 'dean:financeapproval' u.id %}" class="btn btn-success">Approve </a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    {% else %}
+        <div class="container mt-5 mb-5">
+            <div class="alert alert-primary text-center display-6" role="alert">
+                No Pending Approval
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+

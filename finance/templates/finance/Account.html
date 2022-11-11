@@ -1,7 +1,33 @@
 {% extends 'finance/base.html' %}
 {% block title %}Finance Account{% endblock title%}
-{% block profile%}active{% endblock profile%}
+{% block staff%}active{% endblock staff%}
 {% block body %}
-    <center><h1 class="display-5">Hello in the Finance Account .It will be accessible to only the Finance Manager and it be
-         will be implemented in later stage</h1></center>
+    {% if messages %}
+        <div class="container mb-5 mt-5">
+            <center>
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            </center>
+        </div>
+    {% endif %}
+    <center><h1 class="display-5">Register a new Finance Staff</h1></center>
+    <div class="container mt-5 mb-5">
+        <center class="shadow-lg p-3 mb-5 bg-body rounded">
+            <form action="{% url 'finance:account' %}" method="POST">
+                {% csrf_token %}
+                <table class="table table-striped">
+                    <tbody>
+                        {% for field in form %}
+                        <tr>
+                            <th>{{field.label_tag}}</th>
+                            <td>{{field}}</td>
+                          </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                  <input type="submit" value="Register" class="btn btn-success">
+            </form>
+        </center>
+    </div>
 {%endblock body %}
