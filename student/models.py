@@ -13,7 +13,6 @@ class Course(models.Model):
         return f"{self.name}, {self.fee} INR"
 
 class CourseFee(models.Model):
-    course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='Course')
     student = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='Student')
     date = models.DateField()
     ammount = models.DecimalField(max_digits = 10,decimal_places = 2)
@@ -43,8 +42,9 @@ class Student(models.Model):
 
     course = models.ForeignKey(Course,on_delete = models.CASCADE,related_name = 'course')
     actual_fee = models.DecimalField(max_digits = 10, decimal_places =2)
-    user = models.OneToOneField(CustomUser,null=True,blank=True,on_delete=models.CASCADE,related_name='studen_profile')
+    user = models.OneToOneField(CustomUser,null=True,blank=True,on_delete=models.CASCADE,related_name='student_profile')
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
+
 
 

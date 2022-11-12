@@ -21,11 +21,11 @@
                     {% for student in students %}
                     <tr>
                         <th scope="row">{{student.id}}</th>
-                        <td>{{student.firstname}}</td>
-                        <td>{{student.lastname}}</td>
-                        <td>{{student.user}}</td>
-                        <td>{{student.course}}</td>
-                        <td>{{student.actual_fee}}</td>
+                        <td>{{student.student_profile.firstname}}</td>
+                        <td>{{student.student_profile.lastname}}</td>
+                        <td>{{student.student_profile.user}}</td>
+                        <td>{{student.student_profile.course}}</td>
+                        <td>{{student.student_profile.actual_fee}}</td>
                         <td><a href="{% url 'finance:studentactivate' student.id %}" class="btn btn-success">Pay</a></td>
                     </tr>
                     {% endfor %}
