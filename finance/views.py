@@ -3,12 +3,13 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from finance.decorators import finance_required,finance_manager_required
-from student.models import Student
+from student.models import Student,CourseFee
 from django.db.models import Q
 from authsystem.models import CustomUser
 from finance.forms import FinanceForm
 from django.contrib.auth.models import Group
 from django.contrib import messages
+from datetime import datetime
 class Index(View):
     @method_decorator(login_required)
     @method_decorator(finance_required)
@@ -56,17 +57,39 @@ class StudentProfile(View):
     @method_decorator(finance_required)
     def get(self,request):
         # fetching all the student object who are not yet active
-        user_name = CustomUser.object.filter(Q(is_active = False) & Q(groups__name='student'))
-        print(user_name)
-        student_list = []
-        for f in user_name:
-            print(f)
-            student = Student.objects.get(user = f)
-            student_list.append(student)
-        return render(request,'finance/studentprofile.html',{'students':student_list}) 
+        student_names = CustomUser.object.filter(Q(is_active = False) & Q(groups__name='student'))
+        return render(request,'finance/studentprofile.html',{'students':student_names}) 
     
 class StudentActivate(View):
     @method_decorator(login_required)
     @method_decorator(finance_required)
     def get(self,request,pk):
-        return render(request,'finance/student_pay.html',{})
+        user_data = CustomUser.object.get(pk=pk)
+        fee_details = CourseFee.objects.filter(student=user_data)
+        total_fee = 0
+        if fee_details.exists:
+            for fee in fee_details:
+                total_fee += fee.ammount
+        return render(request,'finance/student_pay.html',{'user_data':user_data,'fee_paid':total_fee})
+
+
+class AcceptFee(View):
+
+    @method_decorator(login_required)
+    @method_decorator(finance_required)
+    def post(self,request):
+        id = request.POST.get('id',None)
+        fee = request.POST.get('fee',None)
+        if id is not None and fee is not None:
+            try:
+                user_data = CustomUser.object.get(pk=id)
+            except:
+                messages.error(request,'Error')
+
+            fee_object = CourseFee(student=user_data,date=datetime.now(),ammount=fee)
+            fee_object.save()
+            user_data.is_active = 1
+            user_data.save()
+            messages.success(request,'Data Saved Successfully')    
+
+        return redirect('finance:studentactivate',pk=id)

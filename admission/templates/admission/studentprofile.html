@@ -8,12 +8,19 @@
         <center class="shadow-lg p-3 mb-5 bg-body rounded">
             <form action="{% url 'admission:student-profile' %}" method="POST">
                 {% csrf_token %}
-                
-                {% for f in form %}
-                
-                    {{f}}
 
-                {% endfor %} 
+                <table class="table table-striped">
+                    <tbody>
+                        {% for f in form %}
+                            <tr>
+                                <th scope="row">{{f.label_tag}}</th>
+                                <td>{{f}}</td>
+                            </td>
+                        {% endfor %} 
+                    </tbody>
+                  </table>
+                
+                
                 <input type="submit" class="btn btn-success" value="Create new student profile" />
             </form>
         </center>

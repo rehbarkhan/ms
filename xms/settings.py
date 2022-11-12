@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'student.apps.StudentConfig',
     'dean.apps.DeanConfig',
     'test_rehbar.apps.TestRehbarConfig',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [
