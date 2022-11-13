@@ -1,0 +1,58 @@
+{% extends 'finance/base.html' %}
+{% block title %}Student Profile{% endblock title%}
+{% block student%}active{% endblock student%}
+{% block body %}
+
+<div class="container mt-5">
+    <center>
+      <form action="{% url 'finance:search_student' %}" method="POST">
+        {% csrf_token %}
+          <input type='text' name='search' placeholder="Search Student" class="form-control shadow p-3 mb-5 bg-body rounded" />
+          <input type="submit" value="Search" class="btn btn-primary mt-3"/>
+      </form>
+    </center>
+</div>
+<div class="container mt-3 mb-3">
+  <hr>
+</div>
+{% if data %}
+<div class="container mb-5 mt-5">
+  <center>
+      <h1 class="display-6 mb-5">Students List</h1>
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Roll Number</th>
+              <th scope="col">First Name</th>
+              <th scope="col">last Name </th>
+              <th scope="col">User Name</th>
+              <th scope="col">Course Name</th>
+              <th scope="col">Total Tution Fee</th>
+              <th scope="col">Pay</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for student in data %}
+              <tr>
+                  <th scope="row">{{student.user.id}}</th>
+                  <td>{{student.firstname}}</td>
+                  <td>{{student.lastname}}</td>
+                  <td>{{student.user}}</td>
+                  <td>{{student.course}}</td>
+                  <td>{{student.actual_fee}}</td>
+                  <td><a href="{% url 'finance:studentactivate' student.user.id %}" class="btn btn-success">Pay</a></td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+  </center>
+</div>
+{% else %}
+  <div class="container">
+    <div class="alert alert-primary shadow-lg p-3 mb-5 bg-body rounded" role="alert">
+      No result found
+    </div>
+  </div>
+{% endif %}
+
+{%endblock body %}

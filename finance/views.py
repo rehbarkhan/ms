@@ -88,8 +88,16 @@ class AcceptFee(View):
 
             fee_object = CourseFee(student=user_data,date=datetime.now(),ammount=fee)
             fee_object.save()
-            user_data.is_active = 1
-            user_data.save()
+            if user_data.is_active == 0:
+                user_data.is_active = 1
+                user_data.save()
             messages.success(request,'Data Saved Successfully')    
 
         return redirect('finance:studentactivate',pk=id)
+
+
+class SearchStudent(View):
+    def post(self,request):
+        search_data = request.POST.get('search',None)
+        data = Student.objects.filter(Q(firstname__in=search_data.split())| Q(lastname__icontains=search_data) | Q(id__icontains = search_data.split()) | Q(mobile = search_data) | Q(user__username__icontains=search_data))
+        return render(request,'finance/student_search.html',{'data':data})
