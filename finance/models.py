@@ -29,7 +29,7 @@ class FinanceDepartment(models.Model):
     permanent_zip = models.IntegerField()
     account_type = models.CharField(default='',max_length=255)
     package_lpa = models.DecimalField(max_digits=10,decimal_places=2,default=0.0)
-    salary = models.ForeignKey(FinanceSalary,on_delete = models.CASCADE,null= True)
+    salary = models.ForeignKey(FinanceSalary,on_delete = models.CASCADE,null= True,related_name='finance_salary')
     user = models.OneToOneField(CustomUser,on_delete=models.CASCADE,null=True,related_name='finance')
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
