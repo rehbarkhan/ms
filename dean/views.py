@@ -9,6 +9,7 @@ from django.contrib import messages
 from student.forms import CourseForm
 from student.models import Course
 from django.db.models import Q
+from dean.forms import DeanDepartmentForm
 class Index(View):
 
     @method_decorator(login_required)
@@ -115,3 +116,12 @@ class EditCourse(View):
                 return redirect('dean:course')
         else:
             return redirect('dean:course')
+
+
+class DeanNewStaff(View):
+    
+    @method_decorator(login_required)
+    @method_decorator(dean_required)
+    def get(self,request):
+        form = DeanDepartmentForm()
+        return render(request,'dean/newstaff.html',{'form':form})
