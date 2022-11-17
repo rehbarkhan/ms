@@ -82,3 +82,36 @@ class FinanceApproval(View):
         except:
             messages.error(request,'Unable to Activate Profile')
         return redirect('dean:financestaff')
+
+class EditCourse(View):
+    @method_decorator(login_required)
+    @method_decorator(dean_required)
+    def get(self,request,pk):
+        try:
+            data = Course.objects.get(pk=pk)
+        except:
+            data = None
+        return render(request,'dean/editcourse.html',{'data':data})
+
+    
+    @method_decorator(login_required)
+    @method_decorator(dean_required)
+    def post(self,request,pk):
+        course_name = request.POST.get('course-name',None)
+        course_duration = request.POST.get('course-duration',None)
+        course_description = request.POST.get('course-description',None)
+        course_fee = request.POST.get('course-fee',None)
+
+        if course_name and course_duration and course_description and course_fee:
+            try:
+                course_details = Course.objects.get(pk=pk)
+                course_details.name = course_name
+                course_details.description = course_description
+                course_details.duration = course_duration
+                course_details.fee = course_fee
+                course_details.save()
+                return redirect('dean:course')
+            except:
+                return redirect('dean:course')
+        else:
+            return redirect('dean:course')
