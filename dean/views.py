@@ -10,6 +10,7 @@ from student.forms import CourseForm
 from student.models import Course
 from django.db.models import Q
 from dean.forms import DeanDepartmentForm
+from django.contrib.auth.models import Group
 class Index(View):
 
     @method_decorator(login_required)
@@ -125,3 +126,28 @@ class DeanNewStaff(View):
     def get(self,request):
         form = DeanDepartmentForm()
         return render(request,'dean/newstaff.html',{'form':form})
+
+    @method_decorator(login_required)
+    @method_decorator(dean_required)
+    def post(self,request):
+        form_data = DeanDepartmentForm(request.POST)
+        if form_data.is_valid():
+            form_object = form_data.save()
+            f_name = form_object.firstname
+            l_name = form_object.lastname
+            i_name = form_object.id
+            mob = form_object.mobile
+            dob = form_object.date_of_birth.year
+            user_object = CustomUser.object.create_user(
+                username=f'{f_name[:5].lower()}{l_name[:5].lower()}d{i_name}',
+                password = f'{str(mob)[:5]}@{dob}',
+                is_active = True
+            )
+            user_object.groups.add(Group.objects.get(name='dean'))
+            form_object.user = user_object
+            form_object.account_type = 'dean'
+            form_object.save()
+            messages.success(request,f'Profile created successfully : username {f_name[:5].lower()}{l_name[:5].lower()}d{i_name}')
+        else:
+            print("something is wrong")
+        return redirect('dean:staff')

@@ -12,32 +12,32 @@ class DeanDepartmentForm(forms.ModelForm):
 
         widgets = {
             'firstname':forms.TextInput(attrs={'placeholder':
-            'First Name','class':'form-control mb-2'}),
+            'First Name','class':'form-control'}),
             'middlename':forms.TextInput(attrs={'placeholder':
-            'Middle Name','class':'form-control mb-2'}),
+            'Middle Name','class':'form-control'}),
             'lastname':forms.TextInput(attrs={'placeholder':
-            'Last Name','class':'form-control mb-5'}),
-            'date_of_birth':forms.DateInput(attrs={'type':'date','class':'form-control mb-5'}),
+            'Last Name','class':'form-control'}),
+            'date_of_birth':forms.DateInput(attrs={'type':'date','class':'form-control'}),
             'mobile':forms.TextInput(attrs={'placeholder':
-            'Mobile Number','class':'form-control mb-2'}),
+            'Mobile Number','class':'form-control'}),
             'emergency_mobile':forms.TextInput(attrs={'placeholder':
-            'Emergency Mobile Number','class':'form-control mb-5'}),
+            'Emergency Mobile Number','class':'form-control'}),
             'present_address':forms.TextInput(attrs={'placeholder':
-            'Present Address','class':'form-control mb-2'}),
+            'Present Address','class':'form-control'}),
             'present_city':forms.TextInput(attrs={'placeholder':
-            'Present City','class':'form-control mb-2'}),
+            'Present City','class':'form-control'}),
             'present_state':forms.TextInput(attrs={'placeholder':
-            'Present State','class':'form-control mb-2'}),
+            'Present State','class':'form-control'}),
             'present_zip':forms.TextInput(attrs={'placeholder':
-            'Present Zip Code','class':'form-control mb-5'}),
+            'Present Zip Code','class':'form-control'}),
             'permanent_address':forms.TextInput(attrs={'placeholder':
-            'Permanent Address','class':'form-control mb-2'}),
+            'Permanent Address','class':'form-control'}),
             'permanent_city':forms.TextInput(attrs={'placeholder':
-            'Permanent City','class':'form-control mb-2'}),
+            'Permanent City','class':'form-control'}),
             'permanent_state':forms.TextInput(attrs={'placeholder':
-            'Permanent State','class':'form-control mb-2'}),
+            'Permanent State','class':'form-control'}),
             'permanent_zip':forms.TextInput(attrs={'placeholder':
-            'Permanent Zip Code','class':'form-control mb-5'}),
+            'Permanent Zip Code','class':'form-control'}),
             'package_lpa':forms.TextInput(attrs={'placeholder':
-            'CTC LPA','class':'form-control mb-5'}),
+            'CTC LPA','class':'form-control'}),
         }
