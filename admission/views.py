@@ -36,9 +36,9 @@ class Account(View):
             dob = form_object.date_of_birth.year
             user_object = CustomUser.object.create_user(
                 username=f'{f_name[:5].lower()}{l_name[:5].lower()}{i_name}',
-                password = f'{str(mob)[:5]}@{dob}'
+                password = f'{str(mob)[:5]}@{dob}',
             )
-            user_object.groups.add(Group.objects.get(name=form_object.account_type))
+            user_object.groups.add(Group.objects.get(name=form_data.account_type))
             form_object.user = user_object
             form_object.save()
             messages.success(request,f'Profile created successfully : username {f_name[:5].lower()}{l_name[:5].lower()}{i_name}')
