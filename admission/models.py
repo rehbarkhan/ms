@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import DateField
 from authsystem.models import CustomUser
 
 #Creating model for registering a new memeber in admission department
@@ -7,7 +6,7 @@ from authsystem.models import CustomUser
 
 
 class AdmissionSalalry(models.Model):
-    salary_date = DateField()
+    salary_date = models.DateField()
     salary_ammount = models.DecimalField(max_digits=10,decimal_places=2)
 
     def __str__(self):

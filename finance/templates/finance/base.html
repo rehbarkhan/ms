@@ -13,7 +13,7 @@
   <body>
     <!-- Nav Bar for Finance Portal -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'finance:index' %}">Finance</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
                 <a class="nav-link {% block student %} {% endblock %}" href="{% url 'finance:studentprofile' %}">Student Profile</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% block staff %} {% endblock %}" href="{% url 'finance:account' %}">Account</a>
+                <a class="nav-link {% block staff %} {% endblock %}" href="{% url 'finance:account' %}">New Finance Staff</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% block profile %} {% endblock %}" href="{% url 'finance:profile' %}">Profile</a>

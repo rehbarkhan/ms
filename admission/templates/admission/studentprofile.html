@@ -2,5 +2,27 @@
 {% block title %}Admission Portal{% endblock title%}
 {% block student%}active{% endblock student%}
 {% block body %}
+{% include 'admission/msg.html' %}
     <center><h1 class="display-5">Register New Student</h1></center>
+    <div class="container mt-5 mb-5">
+        <center class="shadow-lg p-3 mb-5 bg-body rounded">
+            <form action="{% url 'admission:student-profile' %}" method="POST">
+                {% csrf_token %}
+
+                <table class="table table-striped">
+                    <tbody>
+                        {% for f in form %}
+                            <tr>
+                                <th scope="row">{{f.label_tag}}</th>
+                                <td>{{f}}</td>
+                            </td>
+                        {% endfor %} 
+                    </tbody>
+                  </table>
+                
+                
+                <input type="submit" class="btn btn-success" value="Create new student profile" />
+            </form>
+        </center>
+    </div>
 {%endblock body %}

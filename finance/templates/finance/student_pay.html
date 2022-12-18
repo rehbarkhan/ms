@@ -1,0 +1,70 @@
+{% extends 'finance/base.html' %}
+{% load mathfilters %}
+{% block title %}Student Profile{% endblock title%}
+{% block staff%}active{% endblock staff%}
+{% block body %}
+  {% if messages %}
+  <div class="container mb-5 mt-5">
+    <center>
+      {% for message in messages %}
+        {{message}}
+      {% endfor %}
+    </center>
+  </div>
+  {% endif %}
+    <div class="container mt-5 mb-5">
+        <center>
+            <h1 class="display-6 mb-5">Pay for tution fee for {{user_data.student_profile.user}} </h1>
+        </center>
+        <center>
+            <table class="table table-striped" style="width:50%;">
+                <tbody>
+                  <tr>
+                    <td>Id</td>
+                    <td>{{user_data.id}}</td>
+                  </tr>
+                  <tr>
+                    <td>First Name</td>
+                    <td>{{user_data.student_profile.firstname}}</td>
+                  </tr>
+                  <tr>
+                    <td>Last Name</td>
+                    <td>{{user_data.student_profile.lastname}}</td>
+                  </tr>
+                  <tr>
+                    <td>User Name</td>
+                    <td>{{user_data.student_profile}}</td>
+                  </tr>
+                  <tr>
+                    <td>Date of Birth</td>
+                    <td>{{user_data.student_profile.date_of_birth}}</td>
+                  </tr>
+                  <tr>
+                    <td>Course</td>
+                    <td>{{user_data.student_profile.course}}</td>
+                  </tr>
+                  <tr>
+                    <td>Total course fee</td>
+                    <td>{{user_data.student_profile.actual_fee}}</td>
+                  </tr>
+                  <tr>
+                    <td>Ammount to pay</td>
+                    <td>{{user_data.student_profile.actual_fee|sub:fee_paid}}</td>
+                  </tr>
+                  <tr>
+                    <td>Pay </td>
+                    <td>
+                        <form action="{% url 'finance:payment' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name='id' value={{user_data.id}} />
+                            <input type="text" class="form-control mb-3" name="fee" />
+                            <input type="submit" class="btn btn-success" value="Proceed with payment" />
+                        </form>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+        </center>
+    </div>
+{%endblock body %}

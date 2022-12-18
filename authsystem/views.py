@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 class Index(View):
     
@@ -40,6 +41,8 @@ class Index(View):
                 else:
                     return redirect('authsystem:authsystem_index')
             else:
+                print('wrong credential')
+                messages.error(request,'unable to login, kindly check the credential')
                 return redirect('authsystem:authsystem_index')
         else:
             return redirect('authsystem:authsystem_index')

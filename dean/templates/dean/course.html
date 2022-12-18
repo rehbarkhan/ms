@@ -1,0 +1,65 @@
+{% extends 'dean/base.html' %}
+{% block course %}active{% endblock %}
+{% block title %}XYZ College{% endblock %}
+{% block body %}
+
+{% include 'dean/msg.html' %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-5">
+                <div class="alert alert-info" role="alert">
+                    <h1 class="display-6 text-center">
+                        Add New Course
+                    </h1>
+                  </div>
+                <form class="alert alert-dark" action="{% url 'dean:course' %}" method="POST">
+                    {% csrf_token %}
+                    {% for f in form %}
+
+                    <div class="mb-3">
+                        {{f}}
+                     </div>
+                     {% endfor %}
+                    <center>
+                        <button type="submit" class="btn btn-primary">Add New Course</button>
+                    </center>
+                </form>
+            </div>
+            <div class="col-md-7">
+                <div class="alert alert-primary" role="alert">
+                    <h1 class="display-6 text-center">Courses</h1>
+            
+                </div>
+                {% if courses %}
+
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Course Name</th>
+                        <th scope="col">Course Duration</th>
+                        <th scope="col">Course Fee</th>
+                        <th scope="col">Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in courses %}
+                      <tr>
+                        <th scope="row">{{course.id}}</th>
+                        <td>{{course.name}}</td>
+                        <td>{{course.duration}}</td>
+                        <td>{{course.fee}}</td>
+                        <td><a href="{% url 'dean:edit-course' course.id %}" class="btn btn-primary">Edit</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                {% else %}
+                    <h1 class="text-center mt-4">
+                        Course not yet added.
+                    </h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

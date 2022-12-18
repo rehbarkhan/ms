@@ -1,8 +1,9 @@
-{% extends 'finance/base.html' %}
-{% block title %}Finance Account{% endblock title%}
-{% block staff%}active{% endblock staff%}
+{% extends 'dean/base.html' %}
+{% block title %}Register Staff{% endblock %}
+{% block staff %}active {% endblock %}
 {% block body %}
-    {% if messages %}
+
+{% if messages %}
         <div class="container mb-5 mt-5">
             <center>
                 {% for message in messages %}
@@ -11,10 +12,10 @@
             </center>
         </div>
     {% endif %}
-    <center><h1 class="display-5">Register a new Finance Staff</h1></center>
+    <center><h1 class="display-5 mt-5">Register a new Dean Staff</h1></center>
     <div class="container mt-5 mb-5">
         <center class="shadow-lg p-3 mb-5 bg-body rounded">
-            <form action="{% url 'finance:account' %}" method="POST">
+            <form action="{% url 'dean:staff' %}" method="POST">
                 {% csrf_token %}
                 <table class="table table-striped">
                     <tbody>
@@ -30,4 +31,5 @@
             </form>
         </center>
     </div>
-{%endblock body %}
+   
+{% endblock %}

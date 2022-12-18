@@ -12,7 +12,7 @@
   </head>
   <body>
     <!-- Navbar for Dean -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'dean:index' %}">Dean Portal</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,13 @@
                 <a class="nav-link {% block admission %} {% endblock %}" href="{% url 'dean:admission' %}">Admission Staff Approve</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% block staff %} {% endblock %}" href="{% url 'admission:account' %}">New Staff</a>
+                <a class="nav-link {% block finance %} {% endblock %}" href="{% url 'dean:financestaff' %}">Finance Staff Approve</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% block staff %} {% endblock %}" href="{% url 'dean:staff' %}">New Staff</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% block course %} {% endblock %}" href="{% url 'dean:course' %}">Courses</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% block pay %} {% endblock %}" href="{% url 'admission:finance' %}">Pay Portal</a>
