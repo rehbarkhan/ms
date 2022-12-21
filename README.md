@@ -7,11 +7,11 @@ XYZ College Management System - Django
 2 . cd to this project i,e ms
 3 . execute - virtualenv .
 4 . source bin/activate (MacOS / Linux) & Script/activate ( Windows )
-5 . pip3 install -r requ.txt
-6 . python3 manage.py makemigrations
-7 . python3 manage.py migrate
-8 . python3 manager.py populate_db [ note down the username password which will generate]
-6 . python3 manager.py runserver
+5 . pip install -r requ.txt
+6 . python manage.py makemigrations
+7 . python manage.py migrate
+8 . python manager.py populate_db [ note down the username password which will generate]
+6 . python manager.py runserver
 After running server you will get the ipaddress to access this project.
 </pre>
 
