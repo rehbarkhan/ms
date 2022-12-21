@@ -10,8 +10,8 @@ XYZ College Management System - Django
 5 . pip install -r requ.txt
 6 . python manage.py makemigrations
 7 . python manage.py migrate
-8 . python manager.py populate_db [ note down the username password which will generate]
-6 . python manager.py runserver
+8 . python manage.py populate_db [ note down the username password which will generate]
+6 . python manage.py runserver
 After running server you will get the ipaddress to access this project.
 </pre>
 
